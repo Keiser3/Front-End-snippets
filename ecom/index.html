@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimalist Leather Products</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Minimalist Leather Products</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+
+        <input type="search" id="search" placeholder="Search">
+
+    </header>
+
+    <main>
+        <section class="product">
+            <img src="" alt="">
+            <h2>Product 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id convallis elit.</p>
+            <button onclick="addToCart('Product 1')">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="product2.jpg" alt="Leather Product 2">
+            <h2>Product 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id convallis elit.</p>
+            <button onclick="addToCart('Product 2')">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="" alt="">
+            <h2>Product 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id convallis elit.</p>
+            <button onclick="addToCart('Product 1')">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="product2.jpg" alt="Leather Product 2">
+            <h2>Product 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id convallis elit.</p>
+            <button onclick="addToCart('Product 2')">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="" alt="">
+            <h2>Product 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id convallis elit.</p>
+            <button onclick="addToCart('Product 1')">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="product2.jpg" alt="Leather Product 2">
+            <h2>Product 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id convallis elit.</p>
+            <button onclick="addToCart('Product 2')">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="" alt="">
+            <h2>Product 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id convallis elit.</p>
+            <button onclick="addToCart('Product 1')">Add to Cart</button>
+        </section>
+
+        <section class="product">
+            <img src="product2.jpg" alt="Leather Product 2">
+            <h2>Product 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id convallis elit.</p>
+            <button onclick="addToCart('Product 2')">Add to Cart</button>
+        </section>
+
+        <!-- Add more product sections as needed -->
+    </main>
+
+    <footer>
+        <p style="opacity: 1;">&copy; 2023 Minimalist Leather Products. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addToCart(productName) {
+            var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems.push(productName);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            alert('Product added to cart!');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimalist Leather Products - Cart</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-quantity input {
+            width: 30px;
+            text-align: center;
+        }
+
+        .cart-item-price {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .cart-actions {
+            margin-top: 20px;
+        }
+
+        .cart-actions button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            background-color: #140d96;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-actions button:hover {
+            background-color: #03124f;
+        }
+
+        .cart-empty {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Minimalist Leather Products - Cart</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="cart-items">
+            <h2>Cart Items</h2>
+            <div id="cart-list">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            <p class="cart-total">Total: $<span id="cart-total">0</span></p>
+            <div class="cart-actions">
+                <button onclick="clearCart()">Clear Cart</button>
+                <button onclick="checkout()">Checkout</button>
+            </div>
+            <p class="cart-empty" id="cart-empty-message"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Minimalist Leather Products. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            displayCartItems();
+        });
+
+        function displayCartItems() {
+            var cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            var cartList = document.getElementById('cart-list');
+            var cartTotal = document.getElementById('cart-total');
+            var cartEmptyMessage = document.getElementById('cart-empty-message');
+            var total = 0;
+
+            cartList.innerHTML = '';
+
+            if (cartItems.length === 0) {
+                cartEmptyMessage.textContent = 'No items in the cart';
+            } else {
+                cartEmptyMessage.textContent = '';
+
+                for (var i = 0; i < cartItems.length; i++) {
+                    var cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+
+                    var itemImage = document.createElement('img');
+                    itemImage.classList.add('cart-item-image');
+                    itemImage.src = 'product-image.jpg';
+                    itemImage.alt = 'Product Image';
+                    cartItem.appendChild(itemImage);
+
+                    var itemDetails = document.createElement('div');
+                    itemDetails.classList.add('cart-item-details');
+
+                    var itemName = document.createElement('p');
+                    itemName.classList.add('cart-item-name');
+                    itemName.textContent = cartItems[i];
+                    itemDetails.appendChild(itemName);
+
+                    var itemQuantity = document.createElement('div');
+                    itemQuantity.classList.add('cart-item-quantity');
+                    var quantityInput = document.createElement('input');
+                    quantityInput.type = 'number';
+                    quantityInput.min = 1;
+                    quantityInput.value = 1;
+                    itemQuantity.appendChild(quantityInput);
+                    itemDetails.appendChild(itemQuantity);
+
+                    cartItem.appendChild(itemDetails);
+
+                    var itemPrice = calculateItemPrice(cartItems[i]);
+                    total += itemPrice;
+                    var priceElement = document.createElement('p');
+                    priceElement.classList.add('cart-item-price');
+                    priceElement.textContent = '$' + itemPrice.toFixed(2);
+                    cartItem.appendChild(priceElement);
+
+                    cartList.appendChild(cartItem);
+                }
+            }
+
+            cartTotal.textContent = total.toFixed(2);
+        }
+
+        function calculateItemPrice(item) {
+            // Example logic to calculate item price based on item name or other factors
+            // Replace with your own logic
+            var price = 0;
+
+            if (item === 'Product 1') {
+                price = 49.99;
+            } else if (item === 'Product 2') {
+                price = 59.99;
+            }
+
+            return price;
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cartItems');
+            displayCartItems();
+        }
+
+        function checkout() {
+            // Perform checkout logic here
+            // Redirect to payment page, submit form, etc.
+            alert('Checkout functionality is not implemented in this example.');
+        }
+    </script>
+</body>
+</html>
